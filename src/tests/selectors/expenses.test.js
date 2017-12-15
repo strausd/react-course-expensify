@@ -1,9 +1,10 @@
 import moment from 'moment';
 
-import getVisibleExpenses from '../../selectors/expenses';
+import { getVisibleExpenses, getExpensesTotal } from '../../selectors/expenses';
 import expenses from '../fixtures/expenses';
 
 
+// getVisibleExpenses Tests
 test('should filter by text value', () => {
     const filters = {
         text: 'g',
@@ -74,4 +75,23 @@ test('should sort by amount', () => {
         expenses[2],
         expenses[0]
     ]);
+});
+
+// getExpensesTotal Tests
+test('should return 0 if no expenses', () => {
+    const total = getExpensesTotal();
+    expect(total).toEqual(0);
+});
+
+test('should correctly add up a single expense', () => {
+    const expense = expenses[0];
+    const total = getExpensesTotal([expense]);
+    expect(total).toEqual(expense.amount);
+});
+
+test('should correctly add up multiple expenses', () => {
+    const total = getExpensesTotal(expenses);
+    let expected_total = 0;
+    expenses.forEach(e => expected_total += e.amount);
+    expect(total).toEqual(expected_total);
 });

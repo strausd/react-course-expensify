@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 // Get visible expenses
-const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+export const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     return expenses.filter((expense) => {
         const createdAtMoment = moment(expense.createdAt);
         const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment) : true;
@@ -18,4 +18,8 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     });
 };
 
-export default getVisibleExpenses;
+export const getExpensesTotal = (expenses = []) => {
+    let total = 0;
+    expenses.forEach(expense => total += expense.amount);
+    return total;
+};
