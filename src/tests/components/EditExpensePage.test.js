@@ -5,14 +5,14 @@ import expenses from '../fixtures/expenses';
 import { EditExpensePage } from '../../components/EditExpensePage';
 
 
-let wrapper, editExpense, startRemoveExpense, expense, history;
+let wrapper, startEditExpense, startRemoveExpense, expense, history;
 
 beforeAll(() => {
-    editExpense = jest.fn();
+    startEditExpense = jest.fn();
     startRemoveExpense = jest.fn();
     history = { push: jest.fn() }
     expense = expenses[0];
-    wrapper = shallow(<EditExpensePage editExpense={editExpense} startRemoveExpense={startRemoveExpense} history={history} expense={expense} />);
+    wrapper = shallow(<EditExpensePage startEditExpense={startEditExpense} startRemoveExpense={startRemoveExpense} history={history} expense={expense} />);
 });
 
 test('should render EditExpensePage correctly', () => {
@@ -24,7 +24,7 @@ test('should verify onSubmit calls functions with proper data', () => {
     expect(component_expense).toEqual(expense);
     wrapper.find('Connect(ExpenseForm)').prop('onSubmit')(expense);
     expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(editExpense).toHaveBeenLastCalledWith(expense.id, expense);
+    expect(startEditExpense).toHaveBeenLastCalledWith(expense.id, expense);
 });
 
 test('should verify onDeleteExpense calls function with proper data', () => {
