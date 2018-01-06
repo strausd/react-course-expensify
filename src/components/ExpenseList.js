@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 
 import ExpenseListItem from './ExpenseListItem';
 import { getVisibleExpenses } from '../selectors/expenses';
-import { startSetExpenses } from '../actions/expenses';
 
 export class ExpenseList extends React.Component {
     constructor(props) {
         super(props);
-        props.startSetExpenses();
     }
 
     render() {
@@ -32,10 +30,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        startSetExpenses: () => dispatch(startSetExpenses())
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ExpenseList);
+export default connect(mapStateToProps)(ExpenseList);

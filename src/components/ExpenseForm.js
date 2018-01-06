@@ -3,8 +3,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { SingleDatePicker } from 'react-dates';
 
-import { removeExpense } from '../actions/expenses';
-
 
 export class ExpenseForm extends React.Component {
     constructor(props) {
