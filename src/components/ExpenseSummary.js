@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
 
@@ -22,14 +23,19 @@ export class ExpenseSummary extends React.Component {
         const amount = this.getFormattedExpenseTotal();
         const expense_string = num_expenses === 1 ? 'expense' : 'expenses';
         return (
-            <p>Viewing {num_expenses} {expense_string} totalling {amount}</p>
+            <h2 className="page-header__title">Viewing <span className="bold">{num_expenses}</span> {expense_string} totalling <span className="bold">{amount}</span></h2>
         );
     }
 
     render() {
         return (
-            <div>
-                {this.getFinalString()}
+            <div className="page-header">
+                <div className="content-container">
+                    {this.getFinalString()}
+                    <div className="page-header__actions">
+                        <Link className="button" to="/create">Add Expense</Link>
+                    </div>
+                </div>
             </div>
         );
     }

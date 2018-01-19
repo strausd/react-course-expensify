@@ -1,0 +1,16 @@
+.button {
+    background: $blue;
+    border: none;
+    color: $light-gray;
+    display: inline-block;
+    font-size: $font-size-large;
+    font-weight: 300;
+    line-height: 1;
+    outline: none;
+    padding: $s-size;
+    text-decoration: none;
+}
+
+.button--link {
+    background: none;
+}
