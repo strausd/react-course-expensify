@@ -40,9 +40,6 @@ import Header from '../components/Header';
 export const PrivateRoute = ({ isAuthenticated, component:Component, ...rest }) => {
     return (
         <Route {...rest} component={ (props) => {
-            for (let property in props) {
-                console.log(property);
-            }
             return (
                 isAuthenticated ? (
                     <div>
